@@ -19,12 +19,9 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             MyAppTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    AppAndroid()
-                }
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Register()
-                }
+                AppAndroid()
+
+                Register()
             }
         }
     }

@@ -13,7 +13,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Lock
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Visibility
@@ -22,6 +21,8 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
@@ -69,50 +70,54 @@ fun AppAndroid() {
             Column (
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.SpaceBetween) {
-                Row() {
-                    Image(
-                        painter = painterResource(id = R.drawable.logo),
-                        contentDescription = "Descripción de la imagen",
-                        modifier = Modifier.size(140.dp),
-                        contentScale = ContentScale.Crop
-                    )
-                }
 
+                Image(
+                    painter = painterResource(id = R.drawable.logo),
+                    contentDescription = "Descripción de la imagen",
+                    modifier = Modifier.size(140.dp),
+                    contentScale = ContentScale.Crop
+                )
                 Spacer(modifier = Modifier.height(25.dp))
-
                 Text(
                     text = "Inicio de sesión",
                     fontSize = 32.sp,
                     color = Color.DarkGray,
                     fontWeight = FontWeight.Bold
                 )
-
                 Spacer(modifier = Modifier.height(25.dp))
-
                 var textNombre by remember { mutableStateOf("") }
-                Row() {
-                    TextField(
-                        value = textNombre,
-                        onValueChange = { newText -> textNombre = newText },
-                        label = { Text("Ingresa tu nombre") },
-                        leadingIcon = {
-                            Icon(
-                                imageVector = Icons.Default.Person,
-                                contentDescription = "Icono de usuario"
-                            )
-                        }
-                    )
-                }
-
+                OutlinedTextField(
+                    value = textNombre,
+                    onValueChange = { newText -> textNombre = newText },
+                    label = { Text("Ingresa tu nombre") },
+                    colors = OutlinedTextFieldDefaults.colors(
+                        focusedContainerColor = Color.White,
+                        unfocusedContainerColor = Color.White,
+                        focusedBorderColor = Color.Gray,
+                        unfocusedBorderColor = Color.Gray
+                    ),
+                    leadingIcon = {
+                        Icon(
+                            imageVector = Icons.Default.Person,
+                            contentDescription = "Icono de usuario"
+                        )
+                    }
+                )
                 Spacer(modifier = Modifier.height(20.dp))
 
                 var textContra by remember { mutableStateOf("") }
                 var passwordVisible by remember { mutableStateOf(false) }
                 Row() {
-                    TextField(
+                    OutlinedTextField(
                         value = textContra,
                         onValueChange = {newText -> textContra = newText},
                         label = {Text("Contraseña")},
+                        colors = OutlinedTextFieldDefaults.colors(
+                            focusedContainerColor = Color.White,
+                            unfocusedContainerColor = Color.White,
+                            focusedBorderColor = Color.Gray,
+                            unfocusedBorderColor = Color.Gray
+                        ),
                         leadingIcon = {
                             Icon(
                                 imageVector = Icons.Default.Lock,
