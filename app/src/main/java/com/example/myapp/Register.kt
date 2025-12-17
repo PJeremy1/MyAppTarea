@@ -3,9 +3,12 @@ package com.example.myapp
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -19,12 +22,15 @@ import androidx.compose.material.icons.filled.LockReset
 import androidx.compose.material.icons.filled.Mail
 import androidx.compose.material.icons.filled.MailOutline
 import androidx.compose.material.icons.filled.Person
+import androidx.compose.material.icons.filled.PersonPin
 import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
@@ -35,6 +41,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
@@ -44,6 +51,9 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+
+
+   // TODO configurar tamaños para que sean más pequeños
 
 @Preview(showBackground = true)
 @Composable
@@ -56,98 +66,156 @@ fun Register() {
     Scaffold(
         modifier = Modifier
             .fillMaxSize()
-            .background(
-                Color(0xFFFDF9C0)
-            )
-            .padding(10.dp)
+            .background(Color.White)
     ) { innerPadding ->
         Column(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(innerPadding)
                 .background(
-                    Color(0xFFFDF9C0)
+                    Color(0xFFFFE2A8)
                 ),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.SpaceAround
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Column(
-                horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.SpaceAround
+            Row (
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .size(width = 250.dp, height = 75.dp)
+                    .background(Color(0xFF4E9D72)),
+                horizontalArrangement = Arrangement.SpaceAround
             ) {
-                Text(
-                    text = "Registrarse",
-                    fontSize = 50.sp,
-                    color = Color.DarkGray,
-                    fontWeight = FontWeight.Bold
+                Image(
+                    painter = painterResource(id = R.drawable.logoestirado),
+                    contentDescription = "Imagen de ejemplo",
+                    modifier = Modifier.size(100.dp)
                 )
-
-                Spacer(modifier = Modifier.height(25.dp))
-
-                var textNombre by remember { mutableStateOf("") }
-                Row() {
-                    TextField(
+            }
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .size(width = 250.dp, height = 10.dp)
+                    .background(Color.LightGray)
+            )
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .size(width = 250.dp, height = 15.dp)
+                    .background(Color(0xFF4E9D72))
+            )
+            Spacer(modifier = Modifier.height(20.dp))
+            Column(
+                modifier = Modifier.padding(12.dp, 0.dp)
+            ) {
+                Column (
+                    modifier = Modifier
+                        .background(Color(0xFFF4F4F4))
+                        .shadow(elevation = 2.dp)
+                        .padding(0.dp, 10.dp, 0.dp, 10.dp),
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.SpaceBetween
+                ) {
+                    Icon(
+                        imageVector = Icons.Default.PersonPin,
+                        contentDescription = "Icono Login",
+                        modifier = Modifier.size(100.dp)
+                    )
+                    Text(
+                        text = "Registrarse",
+                        fontSize = 30.sp,
+                        color = Color.DarkGray,
+                        fontWeight = FontWeight.Bold
+                    )
+                    var textNombre by remember { mutableStateOf("") }
+                    OutlinedTextField(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .padding(20.dp),
+                            .padding(20.dp, 10.dp),
+                        shape = RoundedCornerShape(15.dp),
                         value = textNombre,
                         onValueChange = { newText -> textNombre = newText },
-                        label = { Text("Ingresa tu nombre") },
+                        placeholder = { Text("Ingresa tu nombre") },
                         leadingIcon = {
                             Icon(
                                 imageVector = Icons.Default.Person,
                                 contentDescription = "Icono de usuario"
                             )
-                        }
+                        },
+                        colors = OutlinedTextFieldDefaults.colors(
+                            focusedContainerColor = Color(0xFFE6E6E6),
+                            unfocusedContainerColor = Color(0xFFE6E6E6),
+                            focusedBorderColor = Color(0xFFE6E6E6),
+                            unfocusedBorderColor = Color(0xFFE6E6E6)
+                        ),
                     )
-                }
-
-                var textCorreo by remember { mutableStateOf("") }
-                Row() {
-                    TextField(
+                    Box(
+                        modifier = Modifier
+                            .size(width = 275.dp, height = 8.dp)
+                            .background(Color.Gray)
+                    )
+                    var textCorreo by remember { mutableStateOf("") }
+                    OutlinedTextField(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .padding(20.dp),
+                            .padding(20.dp, 10.dp),
+                        shape = RoundedCornerShape(15.dp),
                         value = textCorreo,
                         onValueChange = { newText -> textCorreo = newText },
-                        label = { Text("Escriba una dirección de correo") },
+                        placeholder = { Text("Escriba una dirección de correo") },
                         leadingIcon = {
                             Icon(
                                 imageVector = Icons.Default.Mail,
                                 contentDescription = "Icono de correo"
                             )
-                        }
+                        },
+                        colors = OutlinedTextFieldDefaults.colors(
+                            focusedContainerColor = Color(0xFFE6E6E6),
+                            unfocusedContainerColor = Color(0xFFE6E6E6),
+                            focusedBorderColor = Color(0xFFE6E6E6),
+                            unfocusedBorderColor = Color(0xFFE6E6E6)
+                        )
                     )
-                }
-
-                var textCorreoR by remember { mutableStateOf("") }
-                Row() {
-                    TextField(
+                    Box(
+                        modifier = Modifier
+                            .size(width = 275.dp, height = 8.dp)
+                            .background(Color.Gray)
+                    )
+                    var textCorreoR by remember { mutableStateOf("") }
+                    OutlinedTextField(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .padding(20.dp),
+                            .padding(20.dp, 10.dp),
+                        shape = RoundedCornerShape(15.dp),
                         value = textCorreoR,
                         onValueChange = { newText -> textCorreoR = newText },
-                        label = { Text("Repita el correo") },
+                        placeholder = { Text("Repita el correo") },
                         leadingIcon = {
                             Icon(
                                 imageVector = Icons.Default.MailOutline,
                                 contentDescription = "Icono de repetir correo"
                             )
-                        }
+                        },
+                        colors = OutlinedTextFieldDefaults.colors(
+                            focusedContainerColor = Color(0xFFE6E6E6),
+                            unfocusedContainerColor = Color(0xFFE6E6E6),
+                            focusedBorderColor = Color(0xFFE6E6E6),
+                            unfocusedBorderColor = Color(0xFFE6E6E6)
+                        )
                     )
-                }
-
-                var textContra by remember { mutableStateOf("") }
-                var passwordVisible by remember { mutableStateOf(false) }
-                Row() {
-                    TextField(
+                    Box(
                         modifier = Modifier
-                            .weight(1f)
-                            .padding(20.dp),
+                            .size(width = 275.dp, height = 8.dp)
+                            .background(Color.Gray)
+                    )
+                    var textContra by remember { mutableStateOf("") }
+                    var passwordVisible by remember { mutableStateOf(false) }
+                    OutlinedTextField(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(20.dp, 10.dp),
+                        shape = RoundedCornerShape(15.dp),
                         value = textContra,
                         onValueChange = { newText -> textContra = newText },
-                        label = { Text("Escriba una contraseña") },
+                        placeholder = { Text("Escriba una contraseña") },
                         leadingIcon = {
                             Icon(
                                 imageVector = Icons.Default.Lock,
@@ -161,20 +229,29 @@ fun Register() {
                             IconButton(onClick = { passwordVisible = !passwordVisible }) {
                                 Icon(imageVector = image, contentDescription = null)
                             }
-                        }
+                        },
+                        colors = OutlinedTextFieldDefaults.colors(
+                            focusedContainerColor = Color(0xFFE6E6E6),
+                            unfocusedContainerColor = Color(0xFFE6E6E6),
+                            focusedBorderColor = Color(0xFFE6E6E6),
+                            unfocusedBorderColor = Color(0xFFE6E6E6)
+                        )
                     )
-                }
-
-                var textContraR by remember { mutableStateOf("") }
-                var passwordVisibleR by remember { mutableStateOf(false) }
-                Row() {
-                    TextField(
+                    Box(
                         modifier = Modifier
-                            .weight(1f)
-                            .padding(20.dp),
+                            .size(width = 275.dp, height = 8.dp)
+                            .background(Color.Gray)
+                    )
+                    var textContraR by remember { mutableStateOf("") }
+                    var passwordVisibleR by remember { mutableStateOf(false) }
+                    OutlinedTextField(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(20.dp, 10.dp),
+                        shape = RoundedCornerShape(15.dp),
                         value = textContraR,
                         onValueChange = { newText -> textContraR = newText },
-                        label = { Text("Repita la contraseña") },
+                        placeholder = { Text("Repita la contraseña") },
                         leadingIcon = {
                             Icon(
                                 imageVector = Icons.Default.LockReset,
@@ -188,58 +265,63 @@ fun Register() {
                             IconButton(onClick = { passwordVisibleR = !passwordVisibleR }) {
                                 Icon(imageVector = image, contentDescription = null)
                             }
-                        }
-                    )
-                }
-
-
-                Row() {
-                    Button(
-                        onClick = {},
-                        shape = RoundedCornerShape(10),
-                        colors = ButtonColors(
-                            containerColor = Color.DarkGray,
-                            contentColor = Color.White,
-                            disabledContentColor = Color.Gray,
-                            disabledContainerColor = Color.Black
-                        ),
-                        modifier = Modifier.width(125.dp)
-                    ) {
-                        Text("Aceptar")
-                    }
-
-                    Spacer(modifier = Modifier.width(25.dp))
-
-                    Button(
-                        onClick = {},
-                        shape = RoundedCornerShape(10),
-                        colors = ButtonColors(
-                            containerColor = Color.DarkGray,
-                            contentColor = Color.White,
-                            disabledContentColor = Color.Gray,
-                            disabledContainerColor = Color.Black
-                        ),
-                        modifier = Modifier.width(125.dp)
-                    ) {
-                        Text("Volver")
-                    }
-                }
-                
-                Spacer(modifier = Modifier.height(10.dp))
-
-                Row() {
-                    Button(
-                        onClick = {textNombre = ""; textCorreo = ""; textCorreoR = "";
-                                  textContra = ""; textContraR = ""},
-                        shape = RoundedCornerShape(10),
-                        colors = ButtonColors(
-                            containerColor = Color.DarkGray,
-                            contentColor = Color.White,
-                            disabledContentColor = Color.Gray,
-                            disabledContainerColor = Color.Black
+                        },
+                        colors = OutlinedTextFieldDefaults.colors(
+                            focusedContainerColor = Color(0xFFE6E6E6),
+                            unfocusedContainerColor = Color(0xFFE6E6E6),
+                            focusedBorderColor = Color(0xFFE6E6E6),
+                            unfocusedBorderColor = Color(0xFFE6E6E6)
                         )
-                    ) {
-                        Text("Limpiar")
+                    )
+
+                    Row() {
+                        Button(
+                            onClick = {},
+                            shape = RoundedCornerShape(10),
+                            colors = ButtonColors(
+                                containerColor = Color.DarkGray,
+                                contentColor = Color.White,
+                                disabledContentColor = Color.Gray,
+                                disabledContainerColor = Color.Black
+                            ),
+                            modifier = Modifier.width(125.dp)
+                        ) {
+                            Text("Aceptar")
+                        }
+
+                        Spacer(modifier = Modifier.width(25.dp))
+
+                        Button(
+                            onClick = {},
+                            shape = RoundedCornerShape(10),
+                            colors = ButtonColors(
+                                containerColor = Color.DarkGray,
+                                contentColor = Color.White,
+                                disabledContentColor = Color.Gray,
+                                disabledContainerColor = Color.Black
+                            ),
+                            modifier = Modifier.width(125.dp)
+                        ) {
+                            Text("Volver")
+                        }
+                    }
+
+                    Spacer(modifier = Modifier.height(10.dp))
+
+                    Row() {
+                        Button(
+                            onClick = {textNombre = ""; textCorreo = ""; textCorreoR = "";
+                                textContra = ""; textContraR = ""},
+                            shape = RoundedCornerShape(10),
+                            colors = ButtonColors(
+                                containerColor = Color.DarkGray,
+                                contentColor = Color.White,
+                                disabledContentColor = Color.Gray,
+                                disabledContainerColor = Color.Black
+                            )
+                        ) {
+                            Text("Limpiar")
+                        }
                     }
                 }
             }

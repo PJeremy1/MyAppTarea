@@ -59,7 +59,7 @@ fun AppAndroid() {
     Scaffold(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color(0xFFFFE2A8)) //TODO quité el inner padding .padding(10.dp)
+            .background(Color.White) //TODO quité el inner padding .padding(10.dp)
     ) { innerPadding ->
         Column(
             modifier = Modifier
@@ -73,7 +73,7 @@ fun AppAndroid() {
             Row (
                 modifier = Modifier
                     .fillMaxWidth()
-                    .size(width = 250.dp, height = 125.dp)
+                    .size(width = 250.dp, height = 100.dp)
                     .background(Color(0xFF4E9D72)),
                 horizontalArrangement = Arrangement.SpaceAround
             ) {
@@ -138,10 +138,10 @@ fun AppAndroid() {
                         onValueChange = { newText -> textNombre = newText },
                         placeholder = { Text("Nombre de usuario") },
                         colors = OutlinedTextFieldDefaults.colors(
-                            focusedContainerColor = Color.White,
-                            unfocusedContainerColor = Color.White,
-                            focusedBorderColor = Color.Gray,
-                            unfocusedBorderColor = Color.Gray
+                            focusedContainerColor = Color(0xFFE6E6E6),
+                            unfocusedContainerColor = Color(0xFFE6E6E6),
+                            focusedBorderColor = Color(0xFFE6E6E6),
+                            unfocusedBorderColor = Color(0xFFE6E6E6)
                         ),
                         leadingIcon = {
                             Icon(
@@ -167,10 +167,10 @@ fun AppAndroid() {
                             onValueChange = {newText -> textContra = newText},
                             placeholder = {Text("Contraseña")},
                             colors = OutlinedTextFieldDefaults.colors(
-                                focusedContainerColor = Color.White,
-                                unfocusedContainerColor = Color.White,
-                                focusedBorderColor = Color.Gray,
-                                unfocusedBorderColor = Color.Gray
+                                focusedContainerColor = Color(0xFFE6E6E6),
+                                unfocusedContainerColor = Color(0xFFE6E6E6),
+                                focusedBorderColor = Color(0xFFE6E6E6),
+                                unfocusedBorderColor = Color(0xFFE6E6E6)
                             ),
                             leadingIcon = {
                                 Icon(
@@ -240,6 +240,12 @@ fun AppAndroid() {
                     }
                 }
             }
+            Spacer(modifier = Modifier.height(40.dp))
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .background(Color.White)
+            )
         }
     }
 }
